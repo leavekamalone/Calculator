@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+#container  {
+
+display:grid;
+grid-template-rows: repeat(var(--grid-rows), 1fr);
+grid-template-columns: repeat(var(--grid-cols), 1fr);
+grid-gap: 0em;
+width: 500px;
+    height: 500px;
+    margin: 0 auto 2rem auto;
+    border: solid black 3px;
+
+}
+
+    
+    #butt {
+        
+
+        display: inline-grid; 
+  grid-template-columns: repeat(3, 1fr); 
+  grid-auto-rows: 60px; 
+ grid-gap: 3px;
+ position: relative;
+ font-size: 20px;
+
+ 
+
+ 
+
+  
+}
+
+
+#myInput  {
+
+    grid-column-start: 1; 
+  grid-column-end: 4; 
+  grid-row-start: 1; 
+  grid-row-end: 3; 
+  margin: auto;
+  
+}
+
+#calc1 {
+     
+  grid-column-start: 1; 
+  grid-column-end: 4; 
+  grid-row-start: 3; 
+  grid-row-end: 4; 
+}
+
+button {
+  
+  background-color: white;
+  
+  border: solid 1px black;
+  color: black;
+  
+  
+ 
+  font-weight: bold;
+  box-sizing: border-box;
+  font-size:0.8em;
+  
+
+
+
+}
+
+</style>
+
+<title>Page Title</title>
+<meta charset="UTF-8"/>
+
+</head>
+<body>
+    
+    <div id ="container">
+        <div id = "butt">    
+            <div id=myInput></div>
+            <button id="calc1">Clear</button>
+            <button id="calcPlus">+ </button>
+            <button id="calcMinus">- </button>
+            <button id="calcMulti">X </button>
+            <button id="calcDivide">/ </button>
+            <button id="calcEqual">= </button>
+            <button id="calcOne">1 </button>
+            <button id="calcTwo">2 </button>
+            <button id="calcThree">3 </button>
+            <button id="calcFour">4 </button>
+            <button id="calcFive">5 </button>
+            <button id="calcSix">6 </button>
+            <button id="calcSeven">7 </button>
+            <button id="calcEight">8 </button>
+            <button id="calcNine">9 </button>
+            <button id="calcZero">0 </button>
+            
+    
+            
+    
+        </div>
+    </div>
+  
+<script>
+    const clear = document.querySelector('#calc1');
+const display = document.querySelector('#myInput');
+
+function add(a,b){
+    return a + b;
+    
+    //display.textContent = a + b;
+}
+
+function subtract(a,b){
+    return a - b;
+}
+
+function multiply (a,b){
+    return a * b;
+}
+
+function divide (a,b) {
+    return a / b;
+
+}
+
+function operate(operator,a,b) {
+    if (operator === '+' ) {
+        return add(a,b);
+    }
+    else if (operator === '-' ) {
+        return subtract(a,b);
+
+    }
+    else if (operator === 'X' ) {
+        return multiply(a,b);
+
+    }
+
+    else if (operator === '/') {
+        return divide(a,b);
+    }
+
+}
+
+
+
+//const buttons = document.querySelectorAll('button');
+
+
+let number = 0;
+let stored = 0;
+
+let numbers = [];
+let operators = [];
+
+
+/*buttons.forEach((button) => {
+    button.addEventListener('click',() =>{
+       display.textContent = ' ';
+    })
+
+
+})*/
+
+clear.addEventListener('click', () => {
+    display.textContent = '';
+    numbers.splice(0,numbers.length);
+    operators.splice(0,operators.length);
+
+})
+
+const one = document.querySelector('#calcOne');
+one.addEventListener('click', () => {
+    
+    display.textContent += '1';
+    let number = display.textContent;
+   
+   equals.disabled = false;
+   return number;
+    
+
+
+})
+
+
+const two = document.querySelector('#calcTwo');
+two.addEventListener('click', () => {
+    display.textContent += '2';
+    let number = display.textContent;
+    equals.disabled = false;
+   return number;
+
+
+})
+
+const three = document.querySelector('#calcThree');
+three.addEventListener('click', () => {
+    display.textContent += '3';
+    let number = display.textContent;
+    equals.disabled = false;
+   return number;
+
+
+})
+
+const four = document.querySelector('#calcFour');
+four.addEventListener('click', () => {
+    display.textContent += '4';
+    let number = display.textContent;
+    equals.disabled = false;
+   return number;
+
+
+})
+
+const five = document.querySelector('#calcFive');
+five.addEventListener('click', () => {
+    display.textContent += '5';
+    let number = display.textContent;
+    equals.disabled = false;
+   return number;
+
+
+})
+
+const six = document.querySelector('#calcSix');
+six.addEventListener('click', () => {
+    display.textContent += '6';
+    let number = display.textContent;
+    equals.disabled = false;
+   return number;
+
+
+})
+
+const seven = document.querySelector('#calcSeven');
+seven.addEventListener('click', () => {
+    display.textContent += '7';
+    let number = display.textContent;
+    equals.disabled = false;
+   return number;
+
+
+})
+
+const eight = document.querySelector('#calcEight');
+eight.addEventListener('click', () => {
+    display.textContent += '8';
+    let number = display.textContent;
+    equals.disabled = false;
+   return number;
+
+})
+
+const nine = document.querySelector('#calcNine');
+nine.addEventListener('click', () => {
+    display.textContent += '9';
+    let number = display.textContent;
+    equals.disabled = false;
+   return number;
+
+
+})
+
+const zero = document.querySelector('#calcZero');
+zero.addEventListener('click', () => {
+    display.textContent += '0';
+    let number = display.textContent;
+    equals.disabled = false;
+   return number;
+
+
+})
+
+const plus = document.querySelector('#calcPlus');
+plus.addEventListener('click', () => {
+    
+    if (display.textContent === '')
+    {
+        return;
+    }
+
+   
+   let stored = parseInt(display.textContent,10);
+   numbers.push(stored);
+   operators.push('+');
+   display.textContent = ''
+
+    //console.log(operators.length);
+    //console.log(numbers);
+    //console.log(stored);
+
+    equals.disabled = true;
+
+
+})
+
+
+const minus = document.querySelector('#calcMinus');
+minus.addEventListener('click', () => {
+    
+    if (display.textContent === '')
+    {
+        return;
+    }
+
+   
+   let stored = parseInt(display.textContent,10);
+   numbers.push(stored);
+   operators.push('-');
+   display.textContent = ''
+
+    //console.log(operators.length);
+    //console.log(numbers);
+    //console.log(stored);
+
+    equals.disabled = true;
+
+
+
+})
+
+
+const multi = document.querySelector('#calcMulti');
+multi.addEventListener('click', () => {
+    
+    if (display.textContent === '')
+    {
+        return;
+    }
+
+   
+   let stored = parseInt(display.textContent,10);
+   numbers.push(stored);
+   operators.push('X');
+   display.textContent = ''
+
+    //console.log(operators.length);
+    //console.log(numbers);
+    //console.log(stored);
+
+
+
+    equals.disabled = true;
+
+})
+
+
+const divide1 = document.querySelector('#calcDivide');
+divide1.addEventListener('click', () => {
+    
+    if (display.textContent === '')
+    {
+        return;
+    }
+
+   
+   let stored = parseInt(display.textContent,10);
+   numbers.push(stored);
+   operators.push('/');
+   display.textContent = ''
+
+    //console.log(operators.length);
+    //console.log(numbers);
+    //console.log(stored);
+
+    equals.disabled = true;
+
+
+
+})
+
+
+
+const equals = document.querySelector('#calcEqual');
+equals.addEventListener('click', () => {
+
+    if (operators.length < 2){
+        let secondNum = parseInt(display.textContent,10);
+   numbers.push(secondNum);
+   console.log(numbers);
+    console.log(operators);
+   let newNumb = operate(operators[0], numbers[0],numbers[1]);
+   display.textContent = newNumb;
+
+   numbers.splice(0,numbers.length);
+    operators.splice(0,operators.length);
+   
+    }
+   
+    else if (operators.length >1){
+    for (let i = 0; i < numbers.length ; i++){
+    let secondNum = parseInt(display.textContent,10);
+    numbers.push(secondNum);
+    let newNumb = operate(operators[0], numbers[0],numbers[1]);
+    operators.shift();
+    
+    numbers.splice(0,2);
+    console.log(numbers);
+    console.log(operators);
+    numbers.unshift(newNumb);
+    
+    console.log(newNumb);
+   
+    display.textContent = newNumb;
+
+
+    }
+    numbers.splice(0,numbers.length);
+    operators.splice(0,operators.length);
+}
+   
+   
+
+    
+
+equals.disabled = true;
+
+})
+
+
+
+
+
+</script>
+
+
+</script>
+
+</script>
+</body>
+</html>
